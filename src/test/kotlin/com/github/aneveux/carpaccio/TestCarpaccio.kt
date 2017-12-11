@@ -52,4 +52,15 @@ class TestCarpaccio {
         assertThat(applyTax(4.32f, "CA")).isEqualTo(4.6764f)
     }
 
+    @Test
+    fun testDiscountPrice() {
+        assertThat(applyDiscount(999f)).isEqualTo(999f)
+        assertThat(applyDiscount(1000f)).isEqualTo(970.0f)
+        assertThat(applyDiscount(3001f)).isEqualTo(2910.97f)
+        assertThat(applyDiscount(5432.32f)).isEqualTo(5160.7036f)
+        assertThat(applyDiscount(7883.21f)).isEqualTo(7331.3853f)
+        assertThat(applyDiscount(10000.12f)).isEqualTo(9000.108f)
+        assertThat(applyDiscount(55000f)).isEqualTo(46750.0f)
+    }
+
 }

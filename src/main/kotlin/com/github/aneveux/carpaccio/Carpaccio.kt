@@ -22,7 +22,11 @@ fun main(args: Array<String>) {
 
     println("Order Value = $orderValue")
 
-    val taxedPrice = applyTax(orderValue,state)
+    val discountPrice = applyDiscount(orderValue)
+
+    println("Discount Price = $discountPrice")
+
+    val taxedPrice = applyTax(discountPrice, state)
 
     println("Price for UT = $taxedPrice")
 }
@@ -30,6 +34,16 @@ fun main(args: Array<String>) {
 fun orderValue(items: Int, price: Float) = items * price
 
 fun applyTax(price: Float, state: String) = price + price * taxes.getOrElse(state) { 0f }
+
+fun applyDiscount(price: Float) = price -
+                                  price * when {
+                                           price >= 50_000 -> 0.15f
+                                      price >= 10_000 -> 0.1f
+                                      price >= 7_000 -> 0.07f
+                                      price >= 5_000 -> 0.05f
+                                      price >= 1_000 -> 0.03f
+                                           else -> 0f
+                                       }
 
 fun <T> askFor(something: String, provider: () -> T): T {
     println("$something:")
