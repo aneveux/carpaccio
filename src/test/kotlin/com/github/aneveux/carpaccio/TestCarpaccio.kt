@@ -63,4 +63,11 @@ class TestCarpaccio {
         assertThat(applyDiscount(55000f)).isEqualTo(46750.0f)
     }
 
+    @Test
+    fun testRound() {
+        assertThat(round(10.23456f)).isEqualTo(10.23f)
+        assertThat(round(10f)).isEqualTo(10f)
+        assertThat(round(10.555f)).isEqualTo(10.56f)
+    }
+
 }

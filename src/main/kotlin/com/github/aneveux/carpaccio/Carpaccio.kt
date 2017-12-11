@@ -1,5 +1,7 @@
 package com.github.aneveux.carpaccio
 
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.util.*
 
 val taxes = mapOf(
@@ -29,6 +31,10 @@ fun main(args: Array<String>) {
     val taxedPrice = applyTax(discountPrice, state)
 
     println("Price for UT = $taxedPrice")
+
+    val round = round(taxedPrice)
+
+    println("Round Price = $round")
 }
 
 fun orderValue(items: Int, price: Float) = items * price
@@ -44,6 +50,12 @@ fun applyDiscount(price: Float) = price -
                                       price >= 1_000 -> 0.03f
                                            else -> 0f
                                        }
+
+fun round(n: Float): Float {
+    val df = DecimalFormat("#.##")
+    df.roundingMode = RoundingMode.HALF_EVEN
+    return df.format(n)?.toFloat() ?: n
+}
 
 fun <T> askFor(something: String, provider: () -> T): T {
     println("$something:")
