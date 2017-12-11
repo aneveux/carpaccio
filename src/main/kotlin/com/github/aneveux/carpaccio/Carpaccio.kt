@@ -12,9 +12,15 @@ fun main(args: Array<String>) {
     val orderValue = orderValue(items, price)
 
     println("Order Value = $orderValue")
+
+    val UTTaxedPrice = applyTax(orderValue)
+
+    println("Price for UT = $UTTaxedPrice")
 }
 
 fun orderValue(items: Int, price: Float) = items * price
+
+fun applyTax(price: Float) = price + price * 0.0685f
 
 fun <T> askFor(something: String, provider: () -> T): T {
     println("$something:")
