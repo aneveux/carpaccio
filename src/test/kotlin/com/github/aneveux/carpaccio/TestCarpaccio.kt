@@ -70,4 +70,11 @@ class TestCarpaccio {
         assertThat(round(10.555f)).isEqualTo(10.56f)
     }
 
+    @Test
+    fun testFormat() {
+        assertThat(format(12345.42f)).isEqualTo("12,345.42")
+        assertThat(format(123f)).isEqualTo("123.00")
+        assertThat(format(1234567.12f)).isEqualTo("1,234,567.12")
+    }
+
 }

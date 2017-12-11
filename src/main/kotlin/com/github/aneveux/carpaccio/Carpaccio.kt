@@ -35,6 +35,10 @@ fun main(args: Array<String>) {
     val round = round(taxedPrice)
 
     println("Round Price = $round")
+
+    val format = format(round)
+
+    println("Formatted price = $format")
 }
 
 fun orderValue(items: Int, price: Float) = items * price
@@ -56,6 +60,8 @@ fun round(n: Float): Float {
     df.roundingMode = RoundingMode.HALF_EVEN
     return df.format(n)?.toFloat() ?: n
 }
+
+fun format(n: Float) = DecimalFormat("#,###.00").format(n) ?: n.toString()
 
 fun <T> askFor(something: String, provider: () -> T): T {
     println("$something:")
