@@ -10,4 +10,11 @@ class TestCarpaccio {
         assertThat(true).isTrue()
     }
 
+    @Test
+    fun testOrderValue() {
+        assertThat(orderValue(1, 10f)).isEqualTo(10f)
+        assertThat(orderValue(10, 10f)).isEqualTo(100f)
+        assertThat(orderValue(2, 3.14f)).isEqualTo(6.28f)
+    }
+
 }
