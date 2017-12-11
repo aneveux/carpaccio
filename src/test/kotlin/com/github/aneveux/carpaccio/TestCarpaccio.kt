@@ -12,44 +12,44 @@ class TestCarpaccio {
 
     @Test
     fun testOrderValue() {
-        assertThat(orderValue(1, 10f)).isEqualTo(10f)
-        assertThat(orderValue(10, 10f)).isEqualTo(100f)
-        assertThat(orderValue(2, 3.14f)).isEqualTo(6.28f)
+        assertThat((1 to 10f).orderValue()).isEqualTo(10f)
+        assertThat((10 to 10f).orderValue()).isEqualTo(100f)
+        assertThat((2 to 3.14f).orderValue()).isEqualTo(6.28f)
     }
 
     @Test
     fun testTaxedPriceUT() {
-        assertThat(applyTax(10f, "UT")).isEqualTo(10.684999f)
-        assertThat(applyTax(1f, "UT")).isEqualTo(1.0685f)
-        assertThat(applyTax(4.32f, "UT")).isEqualTo(4.61592f)
+        assertThat(applyTax(10f to "UT")).isEqualTo(10.684999f)
+        assertThat(applyTax(1f to "UT")).isEqualTo(1.0685f)
+        assertThat(applyTax(4.32f to "UT")).isEqualTo(4.61592f)
     }
 
     @Test
     fun testTaxedPriceNV() {
-        assertThat(applyTax(10f, "NV")).isEqualTo(10.8f)
-        assertThat(applyTax(1f, "NV")).isEqualTo(1.08f)
-        assertThat(applyTax(4.32f, "NV")).isEqualTo(4.6656003f)
+        assertThat(applyTax(10f to "NV")).isEqualTo(10.8f)
+        assertThat(applyTax(1f to "NV")).isEqualTo(1.08f)
+        assertThat(applyTax(4.32f to "NV")).isEqualTo(4.6656003f)
     }
 
     @Test
     fun testTaxedPriceTX() {
-        assertThat(applyTax(10f, "TX")).isEqualTo(10.625f)
-        assertThat(applyTax(1f, "TX")).isEqualTo(1.0625f)
-        assertThat(applyTax(4.32f, "TX")).isEqualTo(4.59f)
+        assertThat(applyTax(10f to "TX")).isEqualTo(10.625f)
+        assertThat(applyTax(1f to "TX")).isEqualTo(1.0625f)
+        assertThat(applyTax(4.32f to "TX")).isEqualTo(4.59f)
     }
 
     @Test
     fun testTaxedPriceAL() {
-        assertThat(applyTax(10f, "AL")).isEqualTo(10.4f)
-        assertThat(applyTax(1f, "AL")).isEqualTo(1.04f)
-        assertThat(applyTax(4.32f, "AL")).isEqualTo(4.4928f)
+        assertThat(applyTax(10f to "AL")).isEqualTo(10.4f)
+        assertThat(applyTax(1f to "AL")).isEqualTo(1.04f)
+        assertThat(applyTax(4.32f to "AL")).isEqualTo(4.4928f)
     }
 
     @Test
     fun testTaxedPriceCA() {
-        assertThat(applyTax(10f, "CA")).isEqualTo(10.825f)
-        assertThat(applyTax(1f, "CA")).isEqualTo(1.0825f)
-        assertThat(applyTax(4.32f, "CA")).isEqualTo(4.6764f)
+        assertThat(applyTax(10f to "CA")).isEqualTo(10.825f)
+        assertThat(applyTax(1f to "CA")).isEqualTo(1.0825f)
+        assertThat(applyTax(4.32f to "CA")).isEqualTo(4.6764f)
     }
 
     @Test

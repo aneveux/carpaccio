@@ -20,40 +20,28 @@ fun main(args: Array<String>) {
     val price = askFor("price") { input.nextFloat() }
     val state = askFor("state") { input.next() }
 
-    val orderValue = orderValue(items, price)
-
-    println("Order Value = $orderValue")
-
-    val discountPrice = applyDiscount(orderValue)
-
-    println("Discount Price = $discountPrice")
-
-    val taxedPrice = applyTax(discountPrice, state)
-
-    println("Price for UT = $taxedPrice")
-
-    val round = round(taxedPrice)
-
-    println("Round Price = $round")
-
-    val format = format(round)
-
-    println("Formatted price = $format")
+    (items to price).orderValue()
+            .then("Applying Discount", ::applyDiscount)
+            .to(state)
+            .then("Applying Taxes", ::applyTax)
+            .then("Rounding Price", ::round)
+            .then("Formatting Price", ::format)
+            .then("Final Price") { "\$ $it" }
 }
 
-fun orderValue(items: Int, price: Float) = items * price
-
-fun applyTax(price: Float, state: String) = price + price * taxes.getOrElse(state) { 0f }
+fun Pair<Int, Float>.orderValue(): Float = (this.first * this.second).also { println("Order Value = $it") }
 
 fun applyDiscount(price: Float) = price -
                                   price * when {
-                                           price >= 50_000 -> 0.15f
+                                      price >= 50_000 -> 0.15f
                                       price >= 10_000 -> 0.1f
                                       price >= 7_000 -> 0.07f
                                       price >= 5_000 -> 0.05f
                                       price >= 1_000 -> 0.03f
-                                           else -> 0f
-                                       }
+                                      else -> 0f
+                                  }
+
+fun applyTax(priceInState: Pair<Float, String>) = priceInState.first + priceInState.first * taxes.getOrElse(priceInState.second) { 0f }
 
 fun round(n: Float): Float {
     val df = DecimalFormat("#.##")
@@ -62,6 +50,9 @@ fun round(n: Float): Float {
 }
 
 fun format(n: Float) = DecimalFormat("#,###.00").format(n) ?: n.toString()
+
+fun <T, R> T.then(action: String, f: (T) -> R) =
+        f.invoke(this).also { println("$action: $it") }
 
 fun <T> askFor(something: String, provider: () -> T): T {
     println("$something:")
