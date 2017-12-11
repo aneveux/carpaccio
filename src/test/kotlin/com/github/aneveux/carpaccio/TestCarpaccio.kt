@@ -12,9 +12,9 @@ class TestCarpaccio {
 
     @Test
     fun testOrderValue() {
-        assertThat((1 to 10f).orderValue()).isEqualTo(10f)
-        assertThat((10 to 10f).orderValue()).isEqualTo(100f)
-        assertThat((2 to 3.14f).orderValue()).isEqualTo(6.28f)
+        assertThat(orderValue((1 to 10f))).isEqualTo(10f)
+        assertThat(orderValue((10 to 10f))).isEqualTo(100f)
+        assertThat(orderValue((2 to 3.14f))).isEqualTo(6.28f)
     }
 
     @Test
@@ -72,9 +72,9 @@ class TestCarpaccio {
 
     @Test
     fun testFormat() {
-        assertThat(format(12345.42f)).isEqualTo("12,345.42")
-        assertThat(format(123f)).isEqualTo("123.00")
-        assertThat(format(1234567.12f)).isEqualTo("1,234,567.12")
+        assertThat(format(12345.42f)).isEqualTo("$ 12,345.42")
+        assertThat(format(123f)).isEqualTo("$ 123.00")
+        assertThat(format(1234567.12f)).isEqualTo("$ 1,234,567.12")
     }
 
 }
